@@ -19,7 +19,6 @@
 #       the 8th slider selects if only the largest circle is chosen.
 
 import cv2
-import cv2.cv
 import numpy as np
 
 # define image resolution
@@ -28,8 +27,8 @@ img_height = 480
 
 # setup video capture
 video_capture = cv2.VideoCapture(0)
-video_capture.set(cv2.cv.CV_CAP_PROP_FRAME_WIDTH,img_width)
-video_capture.set(cv2.cv.CV_CAP_PROP_FRAME_HEIGHT,img_height)
+video_capture.set(cv2.CAP_PROP_FRAME_WIDTH,img_width)
+video_capture.set(cv2.CAP_PROP_FRAME_HEIGHT,img_height)
 
 # check we can connect to camera
 if not video_capture.isOpened():
@@ -122,7 +121,7 @@ while(1):
     grey_res = cv2.medianBlur(grey_res,5)
 
     if (switch == 1):
-        circles = cv2.HoughCircles(grey_res,cv2.cv.CV_HOUGH_GRADIENT,1,50,param1=50,param2=30,minRadius=0,maxRadius=0)
+        circles = cv2.HoughCircles(grey_res,cv2.HOUGH_GRADIENT,1,50,param1=50,param2=30,minRadius=0,maxRadius=0)
     	#circles = cv2.HoughCircles(grey_res,cv2.cv.CV_HOUGH_GRADIENT,1,20)
 
         # check if any circles were found
